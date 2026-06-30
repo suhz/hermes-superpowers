@@ -8,12 +8,11 @@ code quality.
 more, nothing less) and is well-built (clean, tested, maintainable)
 
 ```
-Subagent (general-purpose):
-  description: "Review Task N (spec + quality)"
-  model: [MODEL — REQUIRED: choose per SKILL.md Model Selection; an omitted
-         model silently inherits the session's most expensive one]
-  prompt: |
-    You are reviewing one task's implementation: first whether it matches its
+delegate_task(tasks=[
+  {
+    "goal": "Review Task N (spec + quality)",
+    "context": |
+      You are reviewing one task's implementation: first whether it matches its
     requirements, then whether it is well-built. This is a task-scoped gate,
     not a merge review — a broad whole-branch review happens separately after
     all tasks are complete.
@@ -163,6 +162,8 @@ Subagent (general-purpose):
     **Task quality:** [Approved | Needs fixes]
 
     **Reasoning:** [1-2 sentence technical assessment]
+  }
+])
 ```
 
 **Placeholders:**

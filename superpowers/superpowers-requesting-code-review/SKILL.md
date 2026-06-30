@@ -34,7 +34,7 @@ terminal(command="gh pr checks")  # verify CI passed
 
 **3. Dispatch code reviewer subagent:**
 
-Dispatch a `general-purpose` subagent, filling the template at [code-reviewer.md](code-reviewer.md)
+Use `delegate_task(goal=..., context=...)` to dispatch a code-reviewer subagent. The full prompt template lives at [code-reviewer.md](code-reviewer.md) — paste the assembled prompt into the `context` field, with a one-line `goal` summarizing the task.
 
 **Placeholders:**
 - `{PLAN_OR_REQUIREMENTS}` - What it should do
@@ -57,13 +57,13 @@ You: Let me request code review before proceeding.
 terminal(command="git log --oneline | grep \"Task 1\" | head -1 | awk '{print $1}'")  # BASE_SHA
 terminal(command="git rev-parse HEAD")  # HEAD_SHA
 
-[Dispatch code reviewer subagent]
-  PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
-  BASE_SHA: a7981ec
-  HEAD_SHA: 3df7661
-  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
-
-[Subagent returns]:
+[Dispatch code reviewer subagent via delegate_task]
+  goal: "Review code changes (Task 2: Add verification function)"
+  context: |
+    PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
+    BASE_SHA: a7981ec
+    HEAD_SHA: 3df7661
+    DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
   Strengths: Clean architecture, real tests
   Issues:
     Important: Missing progress indicators

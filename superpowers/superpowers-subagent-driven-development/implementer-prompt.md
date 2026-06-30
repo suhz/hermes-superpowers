@@ -3,12 +3,11 @@
 Use this template when dispatching an implementer subagent.
 
 ```
-Subagent (general-purpose):
-  description: "Implement Task N: [task name]"
-  model: [MODEL — REQUIRED: choose per SKILL.md Model Selection; an omitted
-         model silently inherits the session's most expensive one]
-  prompt: |
-    You are implementing Task N: [task name]
+delegate_task(tasks=[
+  {
+    "goal": "Implement Task N: [task name]",
+    "context": |
+      You are implementing Task N: [task name]
 
     ## Task Description
 
@@ -136,4 +135,6 @@ Subagent (general-purpose):
     Use DONE_WITH_CONCERNS if you completed the work but have doubts about correctness.
     Use BLOCKED if you cannot complete the task. Use NEEDS_CONTEXT if you need
     information that wasn't provided. Never silently produce work you're unsure about.
+  }
+])
 ```

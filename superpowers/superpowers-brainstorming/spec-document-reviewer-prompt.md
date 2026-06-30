@@ -7,10 +7,11 @@ Use this template when dispatching a spec document reviewer subagent.
 **Dispatch after:** Spec document is written to docs/superpowers/specs/
 
 ```
-Subagent (general-purpose):
-  description: "Review spec document"
-  prompt: |
-    You are a spec document reviewer. Verify this spec is complete and ready for planning.
+delegate_task(tasks=[
+  {
+    "goal": "Review spec document",
+    "context": |
+      You are a spec document reviewer. Verify this spec is complete and ready for planning.
 
     **Spec to review:** [SPEC_FILE_PATH]
 
@@ -44,6 +45,8 @@ Subagent (general-purpose):
 
     **Recommendations (advisory, do not block approval):**
     - [suggestions for improvement]
+  }
+])
 ```
 
 **Reviewer returns:** Status, Issues (if any), Recommendations
