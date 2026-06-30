@@ -24,14 +24,13 @@ Dispatch a code reviewer subagent to catch issues before they cascade. The revie
 ## How to Request
 
 **1. Get git SHAs:**
-terminal(command=BASE_SHA=$(git rev-parse HEAD~1))
-terminal(command=HEAD_SHA=$(git rev-parse HEAD))
-# or use origin/main as BASE_SHA
+terminal(command="git rev-parse HEAD~1")  # BASE_SHA, or use origin/main
+terminal(command="git rev-parse HEAD")    # HEAD_SHA
 
 **2. Check context (optional but recommended):**
-terminal(command=git status)
-terminal(command=gh pr view  # if reviewing a PR)
-terminal(command=gh pr checks  # verify CI passed)
+terminal(command="git status")
+terminal(command="gh pr view")    # if reviewing a PR
+terminal(command="gh pr checks")  # verify CI passed
 
 **3. Dispatch code reviewer subagent:**
 
@@ -55,9 +54,8 @@ Dispatch a `general-purpose` subagent, filling the template at [code-reviewer.md
 [Just completed Task 2: Add verification function]
 
 You: Let me request code review before proceeding.
-
-terminal(command=BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}'))
-terminal(command=HEAD_SHA=$(git rev-parse HEAD))
+terminal(command="git log --oneline | grep \"Task 1\" | head -1 | awk '{print $1}'")  # BASE_SHA
+terminal(command="git rev-parse HEAD")  # HEAD_SHA
 
 [Dispatch code reviewer subagent]
   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
