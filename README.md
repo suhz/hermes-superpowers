@@ -4,6 +4,8 @@ Superpowers for Hermes is a derivative work based on the original [obra/superpow
 
 All rights are reserved to the original obra/superpowers project and its contributors.
 
+> **Synced to [obra/superpowers](https://github.com/obra/superpowers) v6.0.3** (upstream commit `45c3cc5`, 2026-06-18). See [UPSTREAM-SYNC.md](UPSTREAM-SYNC.md) for the Hermes transformation layer and what is intentionally not ported.
+
 ## Overview
 
 Superpowers provides a systematic approach to software development that ensures code quality, test coverage, and reliable delivery. The workflow emphasizes:
@@ -12,7 +14,7 @@ Superpowers provides a systematic approach to software development that ensures 
 - **Declarative Planning** - Break work into bite-sized tasks before coding
 - **Evidence-Based Development** - Verify before declaring success
 - **Parallel Execution** - Dispatch independent tasks concurrently
-- **Two-Stage Review** - Spec compliance, then code quality
+- **Code Review** - Task-scoped review after each task, plus a final whole-branch review
 
 ## How It Works
 
@@ -25,7 +27,7 @@ Superpowers skills are loaded automatically by Hermes when their triggers are de
 
 ## Skills Library
 
-All 13 skills below are **Hermes-native** - they explicitly use Hermes tools:
+All 14 skills below are **Hermes-native** - they explicitly use Hermes tools:
 
 ### Planning Skills
 
@@ -38,10 +40,11 @@ All 13 skills below are **Hermes-native** - they explicitly use Hermes tools:
 
 | Skill | Description |
 |--------|-------------|
-| [subagent-driven-development](./superpowers-subagent-driven-development/) | Dispatches fresh subagent per task with two-stage review (spec compliance → code quality). Supports parallel dispatch for independent tasks |
+| [subagent-driven-development](./superpowers-subagent-driven-development/) | Dispatches a fresh subagent per task with task-scoped review, plus a final whole-branch review |
 | [executing-plans](./superpowers-executing-plans/) | Batch execution of plans in current session with verification checkpoints |
 | [test-driven-development](./superpowers-test-driven-development/) | Enforces RED-GREEN-REFACTOR: write test first, watch it fail, write minimal code |
 | [systematic-debugging](./superpowers-systematic-debugging/) | 4-phase root cause investigation: trace → analyze → test → verify |
+| [dispatching-parallel-agents](./superpowers-dispatching-parallel-agents/) | Concurrent subagent workflows for 2+ independent tasks with no shared state |
 
 ### Review Skills
 
@@ -63,7 +66,7 @@ All 13 skills below are **Hermes-native** - they explicitly use Hermes tools:
 |--------|-------------|
 | [using-git-worktrees](./superpowers-using-git-worktrees/) | Creates isolated git worktrees with smart directory selection |
 | [writing-skills](./superpowers-writing-skills/) | Create new skills following best practices |
-| [slash-commands](./superpowers-slash-commands/) | Dispatcher for `/superpowers:skill-name` syntax |
+| [slash-commands](./superpowers-slash-commands/) | Dispatcher for `/superpowers-skill-name` syntax |
 | [using-superpowers](./superpowers-using-superpowers/) | Introduction to the skills system and how to use it |
 
 ## Tool Reference
@@ -119,8 +122,8 @@ User: "Help me plan this feature"
 
 **Optional explicit invocation:**
 You can also trigger skills directly with the skill prefix:
-- "Use `/superpowers:brainstorming` to explore options"
-- "Use `/superpowers:writing-plans` to create a plan"
+- "Use `/superpowers-brainstorming` to explore options"
+- "Use `/superpowers-writing-plans` to create a plan"
 
 ## Migration Notes
 
